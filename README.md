@@ -3,9 +3,9 @@
 ## Table of Contents
 1. [Project Details](#1-project-details)
 2. [Introduction](#2-introduction)
-3. [Functional Requirements](#3-functional-requirements)
-3.1 [Dunning Process](#31-dunning-process)
-3.2 [Cure Process](#32-cure-process)
+3. [Functional Requirements](#3-functional-requirements)<br>
+3.1 [Dunning Process](#31-dunning-process)<br>
+3.2 [Cure Process](#32-cure-process)<br>
 4. [Non-Functional Requirements](#4-non-functional-requirements)
 5. [Dev/Execution Platform](#5-devexecution-platform)
 6. [Workflow Tool](#6-workflow-tool)
