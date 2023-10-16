@@ -1,0 +1,18 @@
+<h2>Customers</h2>
+<ul>
+    <li *ngFor='let customer of Customers'>
+        <p>{{customer.id}}</p>
+        <p>
+            {{customer.name}}
+        </p>
+        <p>
+            {{customer.mailId}}
+        </p>
+        <p>
+            {{customer.phoneNumber}}
+        </p>
+    </li>
+
+    <button onclick="paymentDues(customer.id)">Due Payments</button>
+
+</ul>

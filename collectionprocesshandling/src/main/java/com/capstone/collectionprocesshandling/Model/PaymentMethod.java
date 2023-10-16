@@ -1,4 +1,4 @@
-package com.capstone.collectionprocesshandling.Entity;
+package com.capstone.collectionprocesshandling.Model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,11 +8,10 @@ import lombok.Data;
 
 @Entity
 @Data
-public class customer {
+public class PaymentMethod {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String name;
-    String mail_id;
-    long contact_number;
+    int methodId;
+    String methodName;
+    
 }
