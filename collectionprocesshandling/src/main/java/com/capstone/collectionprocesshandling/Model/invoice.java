@@ -17,8 +17,6 @@ public class invoice {
     int invoiceId;
     double amountDue;
     Date dueDate;
-    PaymentMethod paymentMethod;
-    paymentPlan paymentplan;
 
     @ManyToOne
     CustomerEntity customer;

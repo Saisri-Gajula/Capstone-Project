@@ -6,13 +6,19 @@ import { AppComponent } from './app.component';
 import { CustomerComponent } from './customer/customer.component';
 import { DuePaymentsComponent } from './due-payments/due-payments.component';
 
+
+
+
+
+
 @NgModule({
+ 
   declarations: [
     AppComponent,
     CustomerComponent,
     DuePaymentsComponent
   ],
-  imports: [
+  imports:[
     BrowserModule,
     AppRoutingModule,
     HttpClientModule

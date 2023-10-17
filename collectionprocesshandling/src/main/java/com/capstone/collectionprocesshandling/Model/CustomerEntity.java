@@ -19,4 +19,12 @@ public class CustomerEntity {
     String  phoneNumber;
     LocalDate dueDate;
     // private PaymentHistory paymentHistory;
+    public CustomerEntity(int id,String name,String mailId, String phoneNumber,LocalDate date){
+        this.Id = id;
+        this.name = name;
+        this.mailId = mailId;
+        this.phoneNumber = phoneNumber;
+        this.dueDate = date;
+        
+    }
 }

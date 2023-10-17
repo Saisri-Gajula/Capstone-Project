@@ -22,6 +22,4 @@ public class paymentReceipt {
     CustomerEntity customer;
 
     
-    @ManyToOne
-    private PaymentStatus paymentStatus;
 }

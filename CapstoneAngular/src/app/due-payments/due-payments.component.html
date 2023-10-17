@@ -1,9 +1,9 @@
 <p>due-payments works!</p>
-
-
 <ul>
-    <li *ngFor="let duepay in duepays">
+    <li *ngFor="let duepay of duepayment">
         <p>{{duepay.id}}</p>
-        <p>{{duepay.name}}</p>
+        <p>{{duepay.dueDate}}</p>
+        <p>{{duepay.customer.id}}</p>
     </li>
+    <button>Send reminder</button>
 </ul>

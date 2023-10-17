@@ -15,13 +15,14 @@ export class CustomerComponent {
       
   ngOnInit(){
     this.dunningService.customers().subscribe(res => {
-      console.log(res);
+      // console.log(res);
       this.Customers= res;
     });
   }
   
-  paymentDues(id: number){
-    this.router.navigate(['due-payments', id]);
+  paymentDues(){
+    // this.router.navigate(['due-payments']);
+    this.router.navigate(['due-payments']);
   }
   
 }

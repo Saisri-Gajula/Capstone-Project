@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.capstone.collectionprocesshandling.Model.CustomerEntity;
 // import com.capstone.collectionprocesshandling.Model.CustomerEntity;
 import com.capstone.collectionprocesshandling.Model.dunningEntity;
 import com.capstone.collectionprocesshandling.Model.paymentReceipt;
@@ -24,18 +25,25 @@ public class dunningService {
         LocalDate thresholdDate = currentDate.minusDays(5);
         // System.out.println(currentDate.minusDays(5));
         List<paymentReceipt> dunningPayments = dunningrepo.dunningPayments(thresholdDate);
-        dunningEntity dunning = new dunningEntity();
-        System.out.println(dunningPayments);
+        System.out.println("hello " + dunningPayments);
         for(paymentReceipt dunningPayment : dunningPayments){
-            dunning.setCustomer(dunningPayment.getCustomer());
-            dunning.setDueDate(dunningPayment.getDueDate());
+            if (!isCustomerInDunning(dunningPayment.getCustomer())) {
+                dunningEntity dunning = new dunningEntity();
+                dunning.setCustomer(dunningPayment.getCustomer());
+                dunning.setDueDate(dunningPayment.getDueDate());
+                dunningrepo.save(dunning);
+            }
         }
-        dunningrepo.save(dunning);
         // System.out.println(dunningrepo.findAll());
         return dunningPayments;
     }
 
     public List<dunningEntity> dunningpays(){
         return dunningrepo.findAll();
+    }
+
+     private boolean isCustomerInDunning(CustomerEntity customer) {
+        List<dunningEntity> existingDunningEntries = dunningrepo.findByCustomer(customer);
+        return !existingDunningEntries.isEmpty();
     }
 }
