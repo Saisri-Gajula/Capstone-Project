@@ -19,6 +19,9 @@ public class dunningService {
     private dunningRepo dunningrepo;
     
 
+    public dunningService(dunningRepo dunningrepo2) {
+    }
+
     public List<paymentReceipt> getdunningpays(){
         
         LocalDate currentDate = LocalDate.now();

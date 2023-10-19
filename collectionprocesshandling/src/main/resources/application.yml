@@ -5,8 +5,8 @@ spring:
     # username: ${SPRING_DATASOURCE_USERNAME}
     # password: ${SPRING_DATASOURCE_PASSWORD}
     url: jdbc:mysql://localhost:3306/capstonedb
-    username: root
-    password: root
+    username: saisri
+    password: saisri
   jpa: 
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:

@@ -7,9 +7,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+
 public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,13 +23,5 @@ public class CustomerEntity {
     String mailId;
     String  phoneNumber;
     LocalDate dueDate;
-    // private PaymentHistory paymentHistory;
-    public CustomerEntity(int id,String name,String mailId, String phoneNumber,LocalDate date){
-        this.Id = id;
-        this.name = name;
-        this.mailId = mailId;
-        this.phoneNumber = phoneNumber;
-        this.dueDate = date;
-        
-    }
+   
 }

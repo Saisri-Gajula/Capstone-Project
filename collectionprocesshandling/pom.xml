@@ -8,11 +8,11 @@
 		<version>3.1.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.capstone</groupId>
-	<artifactId>collectionprocesshandling</artifactId>
+	<groupId>com</groupId>
+	<artifactId>capstone.collectionprocesshandling</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>collectionprocesshandling</name>
-	<description>Building an application for dunning and cure process </description>
+	<name>capstone.collectionprocesshandling</name>
+	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -20,6 +20,10 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -32,12 +36,11 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
-		<!-- <dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-docker-compose</artifactId>
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
-			<optional>true</optional>
-		</dependency>  -->
+		</dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>
 			<artifactId>mysql-connector-j</artifactId>
@@ -53,16 +56,15 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
 		<plugins>
-		<plugin>
-            <groupId>org.sonarsource.scanner.maven</groupId>
-            <artifactId>sonar-maven-plugin</artifactId>
-            <version>4.9.0.8211</version> <!-- Replace with the latest version -->
-        </plugin>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>

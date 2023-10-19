@@ -15,7 +15,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import com.capstone.collectionprocesshandling.Model.CustomerEntity;
 import com.capstone.collectionprocesshandling.Repository.CustomerRepo;
 import com.capstone.collectionprocesshandling.service.customerService;
-
 @SpringBootTest
 class CustomerServiceTests {
 
@@ -40,4 +39,5 @@ class CustomerServiceTests {
 
         assertEquals(customer_name , customerById.getName());
     }
+
 }

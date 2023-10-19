@@ -21,6 +21,9 @@ public class CustomerController {
     @Autowired
     private customerService customerservice;
 
+    public CustomerController(customerService customerService2) {
+    }
+
     @GetMapping("/customers")
     public List<CustomerEntity> getcustomers(){
         System.out.println(customerservice.getcustomers());
