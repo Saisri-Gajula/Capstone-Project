@@ -1,6 +1,5 @@
 package com.capstone.collectionprocesshandling.Model;
 
-import java.time.LocalDate;
 
 // import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -22,6 +21,6 @@ public class CustomerEntity {
     String name;
     String mailId;
     String  phoneNumber;
-    LocalDate dueDate;
+    // LocalDate dueDate;
    
 }

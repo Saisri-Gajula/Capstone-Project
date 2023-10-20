@@ -5,9 +5,23 @@ spring:
     # username: ${SPRING_DATASOURCE_USERNAME}
     # password: ${SPRING_DATASOURCE_PASSWORD}
     url: jdbc:mysql://localhost:3306/capstonedb
-    username: saisri
-    password: saisri
+    username: root
+    password: root
   jpa: 
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
+
+  # twilio:
+  #     account_sid: ACcc86f0beae31ed1b268f47aa911b229a
+  #     auth_token: bbd48e50cbbf141214e40f20e702aeb1
+  #     from_number: +12296336525
+
+
+twilio:
+  account_sid: ACcc86f0beae31ed1b268f47aa911b229a
+  auth_token: bbd48e50cbbf141214e40f20e702aeb1
+
+  logging:
+    level:
+      org:springframework: DEBUG

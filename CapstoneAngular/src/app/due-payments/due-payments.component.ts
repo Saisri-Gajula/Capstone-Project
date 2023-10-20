@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DunningServiceService } from '../dunning-service.service';
 import { Duepayments } from '../duepayments';
+import { Message } from 'twilio/lib/twiml/MessagingResponse';
 
 @Component({
   selector: 'app-due-payments',
@@ -26,5 +27,33 @@ duepayment: Duepayments[]=[];
     
   }
 
+  
+  sendReminder(PhoneNumber: string) {
 
+
+  //   if (!PhoneNumber.startsWith('whatsapp:')) {
+  //     PhoneNumber = 'whatsapp:' + PhoneNumber;
+  // }
+  
+    this.dunningService.sendReminder(PhoneNumber).subscribe(
+      response => {
+        console.log('Reminder sent successfully:', response);
+      },
+      error => {
+        console.error('Error sending reminder:', error);
+      }
+    );
+  }
+  
+  sendsmsReminder(phoneNumber: string) {
+    this.dunningService.sendSMSReminder(phoneNumber).subscribe(
+        (response) => {
+            console.log('Reminder sent successfully');
+        },
+        (error) => {
+            console.error('Error sending reminder:', error);
+        }
+    );
+}
+  
 }

@@ -1,9 +1,9 @@
-<p>due-payments works!</p>
-<ul>
-    <li *ngFor="let duepay of duepayment">
-        <p>{{duepay.id}}</p>
-        <p>{{duepay.dueDate}}</p>
-        <p>{{duepay.customer.id}}</p>
+<h2>Due Payments</h2>
+<ul class="duepays">
+    <li *ngFor="let duepay of duePayments">
+        <p>Id: {{duepay.id}}</p>
+        <p>Due Date: {{duepay.dueDate}}</p>
+        <p>Customer-Id: {{duepay.customer.id}}</p>
+        <button (click)="sendsmsReminder(duepay.customer.phoneNumber)">Send Reminder</button>
     </li>
-    <button>Send reminder</button>
 </ul>

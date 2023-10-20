@@ -8,12 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.capstone.collectionprocesshandling.Model.CustomerEntity;
 import com.capstone.collectionprocesshandling.Model.dunningEntity;
-import com.capstone.collectionprocesshandling.Model.paymentReceipt;
 // import com.capstone.collectionprocesshandling.Model.dunningEntity;
 import com.capstone.collectionprocesshandling.service.dunningService;
-
 @RestController
 @RequestMapping("/api")
 @CrossOrigin

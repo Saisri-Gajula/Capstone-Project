@@ -1,4 +1,3 @@
-import { identifierName } from "@angular/compiler"
 
 export interface Customer {
     id: number;

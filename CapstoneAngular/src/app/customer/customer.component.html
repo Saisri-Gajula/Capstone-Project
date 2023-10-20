@@ -1,18 +1,34 @@
 <h2>Customers</h2>
-<ul>
+<ul class="customers">
     <li *ngFor='let customer of Customers'>
-        <p>{{customer.id}}</p>
+        <p>Id: {{customer.id}}</p>
         <p>
-            {{customer.name}}
+            Name: {{customer.name}}
         </p>
         <p>
-            {{customer.mailId}}
+            Mail-Id: {{customer.mailId}}
         </p>
         <p>
-            {{customer.phoneNumber}}
+            Phone Number: {{customer.phoneNumber}}
         </p>
+       <!-- <button (click)="PaymentDetails()">Payment Details</button> -->
+        <button (click)="deleteCustomer(customer.id)">Delete</button>
     </li>
-
-    <button (click)="paymentDues()">Due Payments</button>
+    <div>
+        <h2>Add Customer</h2>
+        <form (submit)="addCustomer(newCustomer)">
+          <label for="name">Name:</label>
+          <input [(ngModel)]="newCustomer.name" type="text" id="name" name="name" required>
+          
+          <label for="mailId">Mail-Id:</label>
+          <input [(ngModel)]="newCustomer.mailId" type="text" id="mailId" name="mailId" required>
+          
+          <label for="phoneNumber">Phone Number:</label>
+          <input [(ngModel)]="newCustomer.phoneNumber" type="text" id="phoneNumber" name="phoneNumber" required>
+      
+          <button type="submit">Add Customer</button>
+        </form>
+      </div>
+      
 
 </ul>
