@@ -1,0 +1,28 @@
+/* navbar.component.css */
+
+/* Navbar container */
+.navbar {
+    background-color: #007BFF;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+  }
+  
+  /* Navbar links */
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 20px;
+    transition: color 0.3s;
+  }
+  
+  /* Navbar links on hover */
+  .navbar a:hover {
+    color: #00A6FF;
+  }
+  
+  /* Navbar icons */
+  .navbar i {
+    margin-right: 5px;
+  }
+  

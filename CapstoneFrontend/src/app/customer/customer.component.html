@@ -1,0 +1,50 @@
+<h2>Customers</h2>
+<ul class="customers">
+    <li *ngFor='let customer of Customers'>
+        <p>Id: {{customer.id}}</p>
+        <p>
+            Name: {{customer.name}}
+        </p>
+        <p>
+            Mail-Id: {{customer.mailId}}
+        </p>
+        <p>
+            Phone Number: {{customer.phoneNumber}}
+        </p>
+
+        <p>DueDate: {{customer.dueDate}}</p>
+
+        <p>Product: {{customer.Product}}</p>
+
+        <button (click)="deleteCustomer(customer.id)">Delete</button>
+       
+    </li>
+    <div>
+        <h2>Add Customer</h2>
+        <form (submit)="addCustomer(newCustomer)">
+          <label for="name">Name:</label>
+          <input [(ngModel)]="newCustomer.name" type="text" id="name" name="name" required>
+          
+          <label for="mailId">Mail-Id:</label>
+          <input [(ngModel)]="newCustomer.mailId" type="text" id="mailId" name="mailId" required>
+          
+          <label for="phoneNumber">Phone Number:</label>
+          <input [(ngModel)]="newCustomer.phoneNumber" type="text" id="phoneNumber" name="phoneNumber" required>
+         
+            <label for="product">Enter Product:</label>
+            <!-- <select name="product" id="product">
+                <option value="product1">Product 1</option>
+                <option value="product2">Product 2</option>
+                <option value="product3">Product 3</option>
+                <option value="product4">Product 4</option>~
+            </select> -->
+            <input [(ngModel)]="newCustomer.Product" type="text" id="Product" name="Product" required>
+            <br>
+            <label>DueDate:</label>
+            <input [(ngModel)]="newCustomer.dueDate" type="text" id="dueDate" name="dueDate" placeholder="yyyy/mm/dd" required>
+          <button type="submit">Add Customer</button>
+        </form>
+      </div>
+      
+
+</ul>

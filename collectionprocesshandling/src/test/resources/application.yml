@@ -12,3 +12,7 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+twilio:
+  account_sid: "ACcc86f0beae31ed1b268f47aa911b229a"
+  auth_token: "e54916266d3411d88d4cccad16132e05"
+  from_number: "+12296336525"

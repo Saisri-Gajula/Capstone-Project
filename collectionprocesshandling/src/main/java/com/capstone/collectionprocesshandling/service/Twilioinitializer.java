@@ -1,19 +1,23 @@
-// package com.capstone.collectionprocesshandling.service;
+package com.capstone.collectionprocesshandling.service;
 
-// import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Configuration;
 
-// import com.twilio.Twilio;
+import com.twilio.Twilio;
 
-// @Configuration
-// public class Twilioinitializer {
+@Configuration
+public class Twilioinitializer {
 	
-// 	private final Twilioproperties twilioproperties;
+	private final Twilioproperties twilioproperties;
 	
-// 	public Twilioinitializer(Twilioproperties twilioproperties)
-// 	{
-// 		this.twilioproperties=twilioproperties;
-// 		Twilio.init(twilioproperties.getAccountSid(), twilioproperties.getAuthToken());
-// 		System.out.println("twilio intialized with account: "+twilioproperties.getAccountSid());
-// 	}
+	public Twilioinitializer(Twilioproperties twilioproperties)
+	{
+		this.twilioproperties=twilioproperties;
+		Twilio.init(twilioproperties.getAccountSid(), twilioproperties.getAuthToken());
+		System.out.println("twilio intialized with account: "+twilioproperties.getAccountSid());
+	}
 
-// }
+	public Object someMethod() {
+		return null;
+	}
+
+}

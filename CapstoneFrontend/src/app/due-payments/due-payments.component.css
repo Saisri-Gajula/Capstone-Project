@@ -1,0 +1,29 @@
+/* Style for the "due-payments" section */
+.duepays {
+    list-style: none;
+    padding: 0;
+}
+
+.duepays li {
+    border: 1px solid #ccc;
+    margin: 10px;
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.duepays p {
+    margin: 5px 0;
+}
+
+/* Style for the "Send reminder" button */
+button {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}

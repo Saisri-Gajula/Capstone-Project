@@ -1,5 +1,8 @@
 
 spring:
+  logging:
+    level:
+      org:springframework: DEBUG
   datasource:
     # url: ${SPRING_DATASOURCE_URL}
     # username: ${SPRING_DATASOURCE_USERNAME}
@@ -11,17 +14,7 @@ spring:
     database-platform: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
-
-  # twilio:
-  #     account_sid: ACcc86f0beae31ed1b268f47aa911b229a
-  #     auth_token: bbd48e50cbbf141214e40f20e702aeb1
-  #     from_number: +12296336525
-
-
 twilio:
-  account_sid: ACcc86f0beae31ed1b268f47aa911b229a
-  auth_token: bbd48e50cbbf141214e40f20e702aeb1
-
-  logging:
-    level:
-      org:springframework: DEBUG
+  account_sid: "ACcc86f0beae31ed1b268f47aa911b229a"
+  auth_token: "e54916266d3411d88d4cccad16132e05"
+  from_number: "+12296336525"

@@ -1,59 +1,44 @@
-// package com.capstone.collectionprocesshandling.service;
+package com.capstone.collectionprocesshandling.service;
 
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.beans.factory.annotation.Value;
-// import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import com.twilio.rest.api.v2010.account.Message;
+import com.capstone.collectionprocesshandling.controller.Smsrequest;
+import com.twilio.Twilio;
+import com.twilio.type.PhoneNumber;
 
-// import com.twilio.Twilio;
-// import com.twilio.rest.api.v2010.account.Message;
-// import com.twilio.type.PhoneNumber;
+@Service
+public class ReminderService {
+    
+    @Value("${twilio.account_sid}")
+    private String twilioAccountSid;
 
-// @Service
-// public class ReminderService {
+    @Value("${twilio.auth_token}")
+    private String twilioAuthToken;
 
-//     // @Autowired
-//     // private ReminderService reminderservice;
-//     @Value("${spring.twilio.account_sid}")
-//     private String twilioAccountSid;
+    @Value("${twilio.from_number}")
+    private String twilioPhoneNumber;
 
-//     @Value("${spring.twilio.auth_token}")
-//     private String twilioAuthToken;
+private Twilioproperties twilioproperties;
+public ReminderService(Twilioproperties twilioproperties){
+this.twilioproperties=twilioproperties;
+}
 
-//     @Value("${spring.twilio.from_number}")
-//     private String twilioPhoneNumber;
 
-//     public boolean sendReminder(String phoneNumber) {
-//         // Initialize Twilio client with your credentials
-//         Twilio.init(twilioAccountSid, twilioAuthToken);
-//         System.out.println("---" + phoneNumber);
-//         System.out.println(twilioAccountSid);
-//         System.out.println(twilioAccountSid);
-        
-//         Message message = Message.creator(
-//                 new PhoneNumber("whatsapp:" + phoneNumber),
-//                 new PhoneNumber("whatsapp:" + twilioPhoneNumber),
-//                 "Your payment is due soon. Please make the payment."
-//         ).create();
+    public String sendReminderSms(Smsrequest smsrequest) {
+        Twilio.init(twilioAccountSid, twilioAuthToken);
+        System.out.println(smsrequest.getNumber());
+       
+            Message message = Message.creator(
 
-//         return message.getStatus() == Message.Status.SENT;
-//     }
-//     private final String fromPhoneNumber = "+12296336525";
+                new PhoneNumber(smsrequest.getNumber()),  // Recipient's phone number
+                new PhoneNumber(twilioproperties.getFromNumber()),
+                smsrequest.getMessage()  // Message content
+            ).create();
+            System.out.println("----------------------------------------"+smsrequest.getNumber());
+           return message.getStatus().toString();
+    }
 
-//     public void sendReminderSms(String phoneNumber) {
-//         Twilio.init(twilioAccountSid, twilioAuthToken);
-
-//         try {
-//             // Replace the message with your reminder content
-//             Message message = Message.creator(
-//                 new PhoneNumber(phoneNumber),
-//                 new PhoneNumber(fromPhoneNumber),
-//                 "Your reminder message here"
-//             ).create();
-
-//             System.out.println("Reminder SMS sent: " + message.getSid());
-//         } catch (Exception e) {
-//             System.err.println("Error sending reminder SMS: " + e.getMessage());
-//         }
-//     }
-// }
-
+}

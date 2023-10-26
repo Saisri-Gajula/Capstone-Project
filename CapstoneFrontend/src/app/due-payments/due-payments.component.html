@@ -1,0 +1,11 @@
+<h2>Due Payments</h2>
+<ul class="duepays">
+    <li *ngFor="let duepay of duepayment">
+        <p>Id: {{duepay.id}}</p>
+        <p>Due Date: {{duepay.dueDate}}</p>
+        <p>Customer-Id: {{duepay.customer.id}}</p>
+        <p>Customer-Name: {{duepay.customer.name}}</p>
+        
+        <button  (click)="sendReminder(duepay.customer.phoneNumber)">Send Reminder</button>
+    </li>
+</ul>
