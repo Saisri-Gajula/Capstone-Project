@@ -9,14 +9,22 @@ import { NavbarComponent } from './navbar/navbar.component';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CuringComponent } from './curing/curing.component';
+import { FirstremindersComponent } from './firstreminders/firstreminders.component';
+import { SecondremindersComponent } from './secondreminders/secondreminders.component';
+import { TerminationremindersComponent } from './terminationreminders/terminationreminders.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CustomerComponent,
     DuePaymentsComponent,
-    NavbarComponent
-  ],
+    NavbarComponent,
+    CuringComponent,
+    FirstremindersComponent,
+    SecondremindersComponent,
+    TerminationremindersComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,

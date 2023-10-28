@@ -3,6 +3,6 @@ export interface Customer {
     name:string;
     mailId: string;
     phoneNumber: string;
-    dueDate: Date;
-    Product: string;
+    // days: number;
+    // paymentPlan: string;
 }

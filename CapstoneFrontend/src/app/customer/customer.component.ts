@@ -15,8 +15,7 @@ export class CustomerComponent {
     name: '',
     mailId: '',
     phoneNumber: '',
-    dueDate: new Date(),
-    Product:''
+   
   };  constructor( private dunningService: DunningProcessService, private router:Router){}
       
   ngOnInit(){
@@ -32,9 +31,9 @@ export class CustomerComponent {
   }
   addCustomer(customer: Customer) {
     this.dunningService.addCustomer(customer).subscribe((addedCustomer) => {
-
       console.log('Customer added:', addedCustomer);
     });
+    this.router.navigate(['customer']);
   }
   
   

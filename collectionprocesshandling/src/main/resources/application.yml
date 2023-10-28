@@ -15,6 +15,6 @@ spring:
     hibernate:
       ddl-auto: update
 twilio:
-  account_sid: "ACcc86f0beae31ed1b268f47aa911b229a"
-  auth_token: "e54916266d3411d88d4cccad16132e05"
-  from_number: "+12296336525"
+  account_sid: "AC229f4f16fd888b9afc1b27b4bee8209e"
+  auth_token: "fbb6d4b89ae9e63e52470b933a213f7a"
+  from_number: "+12296291892"

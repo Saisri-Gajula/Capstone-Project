@@ -13,7 +13,6 @@ public class Twilioinitializer {
 	{
 		this.twilioproperties=twilioproperties;
 		Twilio.init(twilioproperties.getAccountSid(), twilioproperties.getAuthToken());
-		System.out.println("twilio intialized with account: "+twilioproperties.getAccountSid());
 	}
 
 	public Object someMethod() {

@@ -1,14 +1,10 @@
 package com.capstone.collectionprocesshandling.model;
-
-
 import java.time.LocalDate;
-
-
-// import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,14 +21,8 @@ public class DunningEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     LocalDate dueDate;
-    
-    @ManyToOne
-    CustomerEntity customer;
 
-    // public dunningEntity(int id, LocalDate date,CustomerEntity customer){
-    //     this.id = id;
-    //     this.dueDate=date;
-    //     this.customer=customer;
-    // }
-    
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private CustomerEntity customer;
 }

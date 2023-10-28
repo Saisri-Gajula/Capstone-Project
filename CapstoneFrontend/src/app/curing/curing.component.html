@@ -1,0 +1,10 @@
+<h2>payment</h2>
+<ul class="reminders">
+    <li *ngFor="let reminder of reminders">
+      
+        <p>Customer-PhoneNumber: {{reminder.phoneNumber}}</p>
+        <p>Reminder-Level: {{reminder.reminder_level}}</p>
+        
+        <button (click)=" paidCustomers(reminder.phoneNumber)">Pay</button>
+    </li>
+</ul>

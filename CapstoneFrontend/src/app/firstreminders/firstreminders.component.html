@@ -1,0 +1,8 @@
+<p>firstreminders works!</p>
+<ul class="duepays">
+    <li *ngFor="let reminder of reminders">
+        <p>Customer-Id: {{reminder.customer.id}}</p>
+        <p>Customer-Name: {{reminder.customer.name}}</p>
+        <p>Due Date: {{reminder.dueDate}}</p>
+    </li>
+</ul>

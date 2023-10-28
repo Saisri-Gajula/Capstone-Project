@@ -17,7 +17,7 @@ duepayment: DuePayments[]=[];
     this.getdunpayments();
 
   }
-
+  
   getdunpayments(){
     console.log("am here ------------------------getdunpa");
 
@@ -31,10 +31,9 @@ duepayment: DuePayments[]=[];
     this.dunningService.sendReminderSms(phoneNumber).subscribe(
       (response) => {
         console.log('Reminder sent successfully:', response);
-      },
-      (error) => {
-        console.error('Error sending reminder:', error);
+        alert('Reminder is sent successfully.');
       }
+     
     );
   }
 }

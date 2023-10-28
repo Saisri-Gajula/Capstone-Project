@@ -1,29 +1,35 @@
-/* Style for the Customers list */
-.customers {
-    list-style: none;
-    padding: 0;
-}
-
-.customers li {
+/* Container for the entire page */
+.container {
+    display: flex;
+  }
+  
+  /* Style the "Add Customer" section on the left (1/4 width) */
+  .add-customer-container {
+    flex: 2; /* Takes up 1/4 of the available space */
+    padding: 20px;
     border: 1px solid #ccc;
-    margin: 10px;
-    padding: 10px;
+    border-radius: 5px;
     background-color: #f9f9f9;
-}
-
-.customers p {
-    margin: 5px 0;
-}
-
-/* Style for the Due Payments button */
-button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
+  }
+  
+  /* Style the "Customers" section on the right (3/4 width) */
+  .customers-container {
+    flex: 2; /* Takes up 3/4 of the available space */
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  
+  /* Additional styling for form elements within "Add Customer" */
+  .addCustomer form {
+    margin-top: 20px;
+    max-width: 50px;
+  }
+  
+  /* Adjust this width to control the maximum width of the entire layout */
+  .container {
+    max-width: 50px; /* Adjust to your desired width */
+    margin: 0 auto;
+  }
+  

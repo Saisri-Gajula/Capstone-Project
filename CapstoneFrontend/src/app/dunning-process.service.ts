@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Customer } from './customer';
 import { DuePayments } from './due-payments';
 import { HttpClient } from '@angular/common/http';
+import { Reminders } from './reminders';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,29 @@ export class DunningProcessService {
 
 
   sendReminderSms(phoneNumber: string): Observable<any> {
-    return this._http.get(`${'http://localhost:8080/api/send-sms'}/${phoneNumber}`); // Use GET since it's a reminder
+    return this._http.get(`${'http://localhost:8080/api/send-sms'}/${phoneNumber}`, { responseType: 'text' }); // Use GET since it's a reminder
   }
 
+  paidCustomer(phoneNumber: string): Observable<any>{
+    return this._http.get(`${'http://localhost:8080/api/add-payment'}/${phoneNumber}`, { responseType: 'text' });
+  }
+
+  curingreminders(): Observable<Reminders[]>{
+    return this._http.get<Reminders[]>('http://localhost:8080/api/curing');
+  }
+
+  
+  firstreminders(): Observable<Reminders[]>{
+    return this._http.get<Reminders[]>('http://localhost:8080/api/initialReminders');
+  }
+
+  
+  secondreminders(): Observable<Reminders[]>{
+    return this._http.get<Reminders[]>('http://localhost:8080/api/secondReminders');
+  }
+
+  
+  terminationreminers(): Observable<Reminders[]>{
+    return this._http.get<Reminders[]>('http://localhost:8080/api/terminationReminders');
+  }
 }

@@ -1,0 +1,9 @@
+<p>terminationreminders works!</p>
+<ul class="duepays">
+    <li *ngFor="let reminder of reminders">
+        <p>Customer-Id: {{reminder.customer.id}}</p>
+        <p>Customer-Name: {{reminder.customer.name}}</p>
+        <p>Due Date: {{reminder.dueDate}}</p>
+        <button (click)="paidCustomers(reminder.phoneNumber)">Pay</button>
+    </li>
+</ul>

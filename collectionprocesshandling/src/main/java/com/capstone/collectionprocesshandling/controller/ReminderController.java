@@ -1,5 +1,7 @@
 package com.capstone.collectionprocesshandling.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.capstone.collectionprocesshandling.model.CustomerEntity;
+import com.capstone.collectionprocesshandling.model.DunningEntity;
+import com.capstone.collectionprocesshandling.model.FirstReminderRequest;
+import com.capstone.collectionprocesshandling.model.SecondReminderRequest;
+import com.capstone.collectionprocesshandling.model.TerminationReminderRequest;
+import com.capstone.collectionprocesshandling.repository.CustomerRepo;
 import com.capstone.collectionprocesshandling.service.ReminderService;
 
 @RestController
@@ -24,16 +32,31 @@ public class ReminderController {
     @Autowired
     private Smsrequest smsrequest;
 
+    @Autowired
+    private CustomerRepo customerRepo;
 @GetMapping("/send-sms/{phoneNumber}")
-public ResponseEntity<Object> sendReminderSms(@PathVariable String phoneNumber) {
-    // phoneNumber= "7660842840";
-    smsrequest.setNumber(phoneNumber);
-    smsrequest.setMessage("Hi Srinath! I am Saisri! From purchasing app :):). You have due payments on purchased products. Please complete your payments. Otherwise We are going to terminate your account (or) Cancel your access to this products.");
-    // System.out.println(smsrequest.getNumber());
-    String status=reminderService.sendReminderSms(smsrequest);
+public ResponseEntity<String> sendReminderSms(@PathVariable String phoneNumber) {
+    CustomerEntity customer = customerRepo.findByPhoneNumber(phoneNumber);
+    String status= reminderService.sendReminderSms(phoneNumber,customer.getName(),1);
     if("sent".equals(status)||"queued".equals(status)){
-        return new ResponseEntity<Object>("sent successfully",HttpStatus.OK);
+        return ResponseEntity.ok().body("sent successfully");
     }
- return new ResponseEntity<Object>("Failed to send message.",HttpStatus.NOT_FOUND);
+ return ResponseEntity.ok().body("Failed to send message");
 }
+
+    @GetMapping("/initialReminders")
+    public List<FirstReminderRequest> initialreminders(){
+        return reminderService.firstReminders();
+    }
+
+    @GetMapping("/secondReminders")
+    public List<SecondReminderRequest> nextreminders(){
+        return reminderService.secondreminders();
+    }
+
+    @GetMapping("/terminationReminders")
+    public List<TerminationReminderRequest> terminationreminders(){
+        return reminderService.terminationReminders();
+    }
+    
 }
