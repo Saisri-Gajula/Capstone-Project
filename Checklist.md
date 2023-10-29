@@ -6,7 +6,7 @@
 - [x] [Documentation](http://localhost:8080/swagger-ui/index.html#/)
 
 ## 2. Frontend
-- [ ] Code
+- [x] [Frontend code](https://github.com/Saisri-Gajula/Capstone-Project/tree/main/CapstoneFrontend)
 - [ ] Documentation
 
 ## 3. Database Model Visualization
