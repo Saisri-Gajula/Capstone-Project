@@ -2,15 +2,15 @@
 # Project Checklist
 
 ## 1. Backend
-- [x] Code
-- [x] Documentation(http://localhost:8080/swagger-ui/index.html#/)
+- [x] [Backend Code](https://github.com/Saisri-Gajula/Capstone-Project/tree/main/collectionprocesshandling)
+- [x] [Documentation](http://localhost:8080/swagger-ui/index.html#/)
 
 ## 2. Frontend
-- [ ] Code
+- [x] [Frontend code](https://github.com/Saisri-Gajula/Capstone-Project/tree/main/CapstoneFrontend)
 - [ ] Documentation
 
 ## 3. Database Model Visualization
-- [ ] ER Diagram
+- [x] [ER Diagram](https://github.com/Saisri-Gajula/Capstone-Project/blob/main/collectionprocesshandling/ER%20Diagram.png)
 
 ## 4. Test Coverage
 - [ ] Reports
