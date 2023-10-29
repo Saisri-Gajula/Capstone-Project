@@ -3,7 +3,7 @@
 
 ## 1. Backend
 - [x] Code
-- [x] Documentation
+- [x] Documentation(http://localhost:8080/swagger-ui/index.html#/)
 
 ## 2. Frontend
 - [ ] Code
