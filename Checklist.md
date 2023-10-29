@@ -10,7 +10,7 @@
 - [ ] Documentation
 
 ## 3. Database Model Visualization
-- [ ] ER Diagram
+- [x] ER Diagram(collectionprocesshandling/ER Diagram.png)
 
 ## 4. Test Coverage
 - [ ] Reports
