@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.twilio.rest.api.v2010.account.Message;
 import com.capstone.collectionprocesshandling.controller.Smsrequest;
+import com.capstone.collectionprocesshandling.model.CustomerEntity;
 import com.capstone.collectionprocesshandling.model.FirstReminderRequest;
 import com.capstone.collectionprocesshandling.model.SecondReminderRequest;
 import com.capstone.collectionprocesshandling.model.TerminationReminderRequest;
@@ -29,6 +30,7 @@ public class ReminderService {
 
     @Autowired
     private DunningRepo dunningRepo;
+
     @Autowired
     private FirstReminderRepo firstreminderRepo;
     
@@ -58,7 +60,7 @@ this.twilioproperties=twilioproperties;
         smsrequest.setMessage("Hi " +name+"! This is from purchasing app. You have due payments on purchased products. Please complete your payments. Otherwise We are going to terminate your account (or) Cancel your access to this products.");
     
         Twilio.init(twilioAccountSid, twilioAuthToken);
-        
+        System.out.println(smsrequest.getNumber());
             Message message = Message.creator(
                 new PhoneNumber(smsrequest.getNumber()),  // Recipient's phone number
                 new PhoneNumber(twilioproperties.getFromNumber()),
@@ -84,12 +86,14 @@ this.twilioproperties=twilioproperties;
             }
             else if(reminderLevel==3){
                  TerminationReminderRequest terminationreminder = new TerminationReminderRequest();
+                 CustomerEntity customer = new CustomerEntity();
                 terminationreminder.setPhoneNumber(smsrequest.getNumber());
                 terminationreminder.setReminderLevel(reminderLevel);
                 terminationreminder.setDueamount(2500);
                 terminationreminder.setDueDate(dunningRepo.findByCustomerId(customerRepo.findByPhoneNumber(phoneNumber).getId()).getDueDate());
                 terminationreminder.setCustomer(customerRepo.findByPhoneNumber(phoneNumber));
                 terminationreminderRepo.save(terminationreminder);
+                
             }
 
            return message.getStatus().toString();

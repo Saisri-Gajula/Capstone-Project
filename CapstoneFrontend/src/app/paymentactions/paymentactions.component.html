@@ -1,15 +1,15 @@
-<p>Payment ACtions Working</p>
+<h2>Payment Plan</h2>
 <ul>
     <li *ngFor="let reminder of reminders">
-        <p>Customer-Id: {{reminder.customer.id}}</p>
-        <p>Customer-Name: {{reminder.customer.name}}</p>
-        <p>paidAmount: {{paidAmount}}</p>
-        <p>Dueamount: {{dueAmount}}</p>
-        <p>
+        <h2><strong>Customer-Id: </strong>{{reminder.customer.id}}</h2>
+        <p><strong>Customer-Name: </strong>{{reminder.customer.name}}</p>
+        <p><strong>paidAmount: </strong>{{paidAmount}}</p>
+        <p><strong>Dueamount: </strong>{{dueAmount}}</p>
+        <h3>
             Remaining amount in 2 installments:
             Pay ur 1st installment amount and reinstate your acces to the app.
-        </p>
-        <p>Installment amount:{{installmentAmount}}</p>
+        </h3>
+        <p><strong>Installment amount:</strong>{{installmentAmount}}</p>
         <button (click)="installmentpay(reminder.customer.id)">Pay</button>
     </li>
 </ul>

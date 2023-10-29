@@ -1,136 +1,116 @@
-// package com.capstone.collectionprocesshandling;
+package com.capstone.collectionprocesshandling;
 
-// import com.capstone.collectionprocesshandling.model.CustomerEntity;
-// import com.capstone.collectionprocesshandling.model.DunningEntity;
-// import com.capstone.collectionprocesshandling.repository.CustomerRepo;
-// import com.capstone.collectionprocesshandling.repository.DunningRepo;
-// import com.capstone.collectionprocesshandling.service.CustomerService;
-// import com.capstone.collectionprocesshandling.service.DunningService;
-// import com.fasterxml.jackson.core.JsonProcessingException;
-// import com.fasterxml.jackson.databind.ObjectMapper;
-// import org.junit.jupiter.api.BeforeAll;
-// import org.junit.jupiter.api.Test;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.boot.test.context.SpringBootTest;
-// import org.springframework.boot.test.web.client.TestRestTemplate;
-// import org.springframework.boot.test.web.server.LocalServerPort;
-// import org.springframework.core.ParameterizedTypeReference;
-// import org.springframework.http.*;
-// import org.springframework.test.context.jdbc.Sql;
+import com.capstone.collectionprocesshandling.model.CustomerEntity;
+import com.capstone.collectionprocesshandling.model.DunningEntity;
+import com.capstone.collectionprocesshandling.repository.CustomerRepo;
+import com.capstone.collectionprocesshandling.repository.DunningRepo;
+import com.capstone.collectionprocesshandling.service.CustomerService;
+import com.capstone.collectionprocesshandling.service.DunningService;
 
-// import java.time.LocalDate;
-// import java.util.List;
-// import java.util.Objects;
+import org.junit.jupiter.api.Test;
+import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.BeforeEach;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertNotNull;
-// import static org.mockito.ArgumentMatchers.notNull;
+import java.time.LocalDate;
+import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+class IntegrationTesting {
+
+    @LocalServerPort
+    private int port;
+
+    @Autowired
+    private TestRestTemplate restTemplate;
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Autowired
+    private CustomerRepo customerRepo;
+
+    @Autowired
+    private DunningRepo dunningRepo;
+
+    @Autowired
+    private DunningService dunningService;
+
+    @Autowired
+    private CustomerService customerService;
+
+    private static HttpHeaders headers;
+
+    @BeforeEach
+    public void setup() {
+        headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+    }
+
+    @Test
+    public void testGetCustomers() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/customers"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
+
+    @Test
+    public void testAddCustomer() {
+        CustomerEntity customer = new CustomerEntity();
+        customer.setName("Test Customer");
+        customer.setMailId("test@example.com");
+        customer.setAmount(1000);
+
+        HttpEntity<CustomerEntity> entity = new HttpEntity<>(customer, headers);
+
+        ResponseEntity<CustomerEntity> response = restTemplate.postForEntity("/api/add-customer", entity, CustomerEntity.class);
+        assertThat(response.getStatusCodeValue()).isEqualTo(200);
+
+        CustomerEntity addedCustomer = response.getBody();
+        assertNotNull(addedCustomer);
+        assertEquals("Test Customer", addedCustomer.getName());
+
+        // You can add more assertions here to validate the added customer's data.
+    }
 
 
-// @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-// public class IntegrationTesting {
+    @Test
+    public void testGetDunningPays() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/dunningPays"))
+                .andExpect(MockMvcResultMatchers.status().isOk());
+    }
 
-//     @LocalServerPort
-//     private int port;
+    @Test
+    public void testGetDunningPaysData() {
+        // Assuming that your dunning service returns a list of DunningEntity
+        List<DunningEntity> dunningList = dunningService.dunningpays();
+        assertNotNull(dunningList);
 
-//     @Autowired
-//     private TestRestTemplate restTemplate;
+        // Send a GET request to retrieve dunning pays from the API
+        ResponseEntity<List> responseEntity = restTemplate.getForEntity("/api/dunningPays", List.class);
+        assertThat(responseEntity.getStatusCodeValue()).isEqualTo(200);
 
-//     @Autowired
-//     private CustomerRepo customerRepo;
+        // Check that the data retrieved from the API matches the data from the service
+        List<DunningEntity> apiDunningList = responseEntity.getBody();
+        assertNotNull(apiDunningList);
 
-//     @Autowired
-//     private CustomerService customerService;
-
-//     @Autowired
-//     private DunningRepo dunningRepo;
-
-//     @Autowired
-//     private DunningService dunningService;
-
-//     private static HttpHeaders headers;
-
-//     private final ObjectMapper objectMapper = new ObjectMapper();
-
-//     @BeforeAll
-//     public static void init() {
-//         headers = new HttpHeaders();
-//         headers.setContentType(MediaType.APPLICATION_JSON);
-//     }
-
-//     @Test
-//      public void testCustomerList() {
-//         HttpEntity<String> entity = new HttpEntity<>(null, headers);
-//         LocalDate currentDate = LocalDate.now();
-
-//         CustomerEntity customer1 = new CustomerEntity(1,"priya","priya@gmail.com","+91973458124",currentDate,"tv");
-//         customerRepo.save(customer1);
-//         CustomerEntity customer2 = new CustomerEntity(2, "emo", "emo@gmail.com", "+919704937049",currentDate,"tv");
-//         customerRepo.save(customer2);
-
-//         ResponseEntity<List<CustomerEntity>> response = restTemplate.exchange(
-//                 createURLWithPort("/api/customers"), HttpMethod.GET, entity, new ParameterizedTypeReference<List<CustomerEntity>>(){});
-//         List<CustomerEntity> customerList = response.getBody();
-//         assert customerList != null;
-//         assertEquals(response.getStatusCode().value(), 200);
-//         assertEquals(customerList.size(), customerService.getAllCustomers().size());
-//         assertEquals(customerList.size(), customerRepo.findAll().size());
-//     }
-
+        // Assuming that the comparison of dunning lists is based on size
+        assertEquals(dunningList.size(), apiDunningList.size());
+    }
     
-//     @Test
-//     // @Sql(statements = "DELETE FROM orders WHERE id='3'", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-//     public void testCreateCustomer() throws JsonProcessingException {
-//         LocalDate currentDate = LocalDate.now();
-
-//         CustomerEntity customer = new CustomerEntity(3, "priya", "priya@gmail.com", "+918567474899",currentDate,"tv");
-//         HttpEntity<String> entity = new HttpEntity<>(objectMapper.writeValueAsString(customer), headers);
-//         ResponseEntity<CustomerEntity> response = restTemplate.exchange(
-//                 createURLWithPort("/api/add-customer"), HttpMethod.POST, entity, CustomerEntity.class);
-//         assertEquals(response.getStatusCode().value(), 200);
-//         CustomerEntity customerRes = Objects.requireNonNull(response.getBody());
-//         assertEquals(customerRes.getName(), "priya");
-//         assertEquals(customerRes.getName(), customerRepo.save(customer).getName());
-//     }
-    
-    
-//     @Test
-//     // @Sql(statements = "INSERT INTO orders(id, buyer, price, qty) VALUES (6, 'alex', 75.0, 3)", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-//     // @Sql(statements = "DELETE FROM orders WHERE id='6'", executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-//     public void testDeleteCustomer() {        LocalDate currentDate = LocalDate.now();
-
-//          CustomerEntity customer1 = new CustomerEntity(6,"priya","priya@gmail.com","+91973458124",currentDate,"tv");
-//         customerRepo.save(customer1);
-//         ResponseEntity<String> response = restTemplate.exchange(
-//                 (createURLWithPort("/api/6")), HttpMethod.DELETE, null, String.class);
-//         String customerRes = response.getBody();
-//         System.out.println(customerRes);
-//         assertEquals(response.getStatusCode().value(), 204);
-//         // assertNotNull(customerRes,"");
-//         assertEquals(customerRes, notNull());
-//     }
-
-//     @Test
-//      public void testDunningPaysList() {
-//         HttpEntity<String> entity = new HttpEntity<>(null, headers);
-//         LocalDate dueDate = LocalDate.now();
-//         DunningEntity dunningpay1 = new DunningEntity(1,dueDate,1);
-//         dunningRepo.save(dunningpay1);
-//          DunningEntity dunningpay2 = new DunningEntity(2,dueDate,2);
-//         dunningRepo.save(dunningpay2);
-
-//         ResponseEntity<List<DunningEntity>> response = restTemplate.exchange(
-//                 createURLWithPort("/api/dunningPays"), HttpMethod.GET, entity, new ParameterizedTypeReference<List<DunningEntity>>(){});
-//         List<DunningEntity> dunningList = response.getBody();
-//         assert dunningList != null;
-//         assertEquals(response.getStatusCode().value(), 200);
-//         assertEquals(dunningList.size(), dunningService.dunningpays().size());
-//         assertEquals(dunningList.size(), dunningRepo.findAll().size());
-//     }
-
-    
-//     private String createURLWithPort(String path) {
-//         return "http://localhost:" + port + path;
-//     }
-
-// }
+}

@@ -1,35 +1,79 @@
-/* Container for the entire page */
-.container {
-    display: flex;
-  }
-  
-  /* Style the "Add Customer" section on the left (1/4 width) */
-  .add-customer-container {
-    flex: 2; /* Takes up 1/4 of the available space */
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  /* Style the "Customers" section on the right (3/4 width) */
-  .customers-container {
-    flex: 2; /* Takes up 3/4 of the available space */
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-  }
-  
-  /* Additional styling for form elements within "Add Customer" */
-  .addCustomer form {
-    margin-top: 20px;
-    max-width: 50px;
-  }
-  
-  /* Adjust this width to control the maximum width of the entire layout */
-  .container {
-    max-width: 50px; /* Adjust to your desired width */
-    margin: 0 auto;
-  }
-  
+/* Style for the entire page */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f0f0;
+}
+
+/* Style for the "Customers" heading */
+h2 {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+}
+
+/* Style for the list of customers */
+ul.customers {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+/* Style for each customer item */
+li {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 20px;
+  max-width: 300px;
+  text-align: center;
+}
+
+/* Style for the "Add Customer" section */
+.addCustomer {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  padding: 20px;
+  max-width: 300px;
+  text-align: center;
+}
+
+/* Style for form labels and input fields */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 10px;
+}
+
+/* Style for the "Continue" button */
+button[type="submit"] {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: #555;
+}

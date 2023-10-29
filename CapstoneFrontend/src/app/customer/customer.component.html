@@ -1,17 +1,17 @@
 <h2>Customers</h2>
 <ul class="customers">
     <li *ngFor='let customer of Customers'>
-        <p>Id: {{customer.id}}</p>
-        <p>
-            Name: {{customer.name}}
-        </p>
-        <p>
-            Mail-Id: {{customer.mailId}}
-        </p>
-        <p> Amount: {{customer.amount}}</p>
-        <p>
-            Phone Number: {{customer.phoneNumber}}
-        </p>   
+        <h2>Customer-Id: {{customer.id}}</h2>
+        <h3>
+           <strong> Name: </strong>   {{customer.name}}
+        </h3>
+        <h3>
+            <strong>Mail-Id:</strong> {{customer.mailId}}
+        </h3>
+        <h3> <strong>Amount: </strong>  {{customer.amount}}</h3>
+        <h3>
+           <strong> Phone Number: </strong>  {{customer.phoneNumber}}
+        </h3>   
 </li>
        
      

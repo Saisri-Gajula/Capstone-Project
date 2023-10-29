@@ -1,28 +1,29 @@
-/* navbar.component.css */
-
-/* Navbar container */
+/* Style the navbar */
 .navbar {
-    background-color: #56606a;
-    display: flex;
-    justify-content: space-between;
-    padding: 10px 20px;
-  }
-  
-  /* Navbar links */
-  .navbar a {
-    color: #fff;
-    text-decoration: none;
-    margin-right: 20px;
-    transition: color 0.3s;
-  }
-  
-  /* Navbar links on hover */
-  .navbar a:hover {
-    color: #1f333e;
-  }
-  
-  /* Navbar icons */
-  .navbar i {
-    margin-right: 5px;
-  }
-  
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px; /* Adjust padding as needed */
+}
+
+/* Style the logo */
+.navbar-logo {
+  max-width: 60px; /* Adjust the logo size as needed */
+  margin-right: 200px; /* Add some margin between the logo and links */
+}
+
+/* Style the links */
+.nav-link {
+  text-decoration: none;
+  color: #333; /* Link color */
+  margin-right: 20px; /* Add some margin between the links */
+  font-weight: bold; /* Make the links bold */
+}
+
+/* Center the links horizontally on the right */
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: flex-end;
+}

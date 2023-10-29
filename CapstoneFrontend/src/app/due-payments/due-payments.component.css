@@ -1,29 +1,53 @@
-/* Style for the "due-payments" section */
-.duepays {
-    list-style: none;
+/* Style for the entire page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
     padding: 0;
+    background-color: #f0f0f0;
 }
 
-.duepays li {
-    border: 1px solid #ccc;
-    margin: 10px;
+/* Style for the "Due Payments" heading */
+h2 {
+    background-color: #333;
+    color: #fff;
     padding: 10px;
-    background-color: #f9f9f9;
+    text-align: center;
 }
 
-.duepays p {
-    margin: 5px 0;
+/* Style for the list of due payments */
+ul.duepays {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
-/* Style for the "Send reminder" button */
+/* Style for each due payment item */
+li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 10px;
+    padding: 20px;
+    max-width: 300px;
+    text-align: center;
+}
+
+/* Style for button */
 button {
-    background-color: #212d39;
+    background-color: #333;
     color: #fff;
     padding: 10px 20px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 10px;
 }
 
 button:hover {
-    background-color: #1f2934;
+    background-color: #555;
 }

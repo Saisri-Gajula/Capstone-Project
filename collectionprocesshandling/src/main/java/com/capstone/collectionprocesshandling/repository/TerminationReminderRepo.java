@@ -6,4 +6,6 @@ import com.capstone.collectionprocesshandling.model.TerminationReminderRequest;
 
 public interface TerminationReminderRepo extends JpaRepository<TerminationReminderRequest,Integer>{
     
+
+    TerminationReminderRequest findByPhoneNumber(String phoneNUmber);
 }

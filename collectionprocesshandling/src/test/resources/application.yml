@@ -13,6 +13,6 @@ spring:
       ddl-auto: update
     show-sql: true
 twilio:
-  account_sid: "ACcc86f0beae31ed1b268f47aa911b229a"
-  auth_token: "e54916266d3411d88d4cccad16132e05"
-  from_number: "+12296336525"
+  account_sid: "ACc2bac07de5e7fbea4b59079daf2a732b"
+  auth_token: "8a1cf8632b16f1ee94492a3098441e14"
+  from_number: "+18647131254"

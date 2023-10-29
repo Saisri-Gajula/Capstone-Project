@@ -1,115 +1,87 @@
-// package com.capstone.collectionprocesshandling;
+package com.capstone.collectionprocesshandling;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-// import org.junit.jupiter.api.Test;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-// import org.junit.jupiter.api.extension.ExtendWith;
-// import org.mockito.Mock;
-// import org.springframework.beans.factory.annotation.Autowired;
-// import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-// import org.springframework.boot.test.context.SpringBootTest;
-// import org.springframework.boot.test.mock.mockito.MockBean;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
 
-// import com.capstone.collectionprocesshandling.model.CustomerEntity;
-// import com.capstone.collectionprocesshandling.model.DunningEntity;
-// import com.capstone.collectionprocesshandling.repository.DunningRepo;
-// import com.capstone.collectionprocesshandling.service.DunningService;
+import com.capstone.collectionprocesshandling.model.CustomerEntity;
+import com.capstone.collectionprocesshandling.model.DunningEntity;
+import com.capstone.collectionprocesshandling.repository.DunningRepo;
+import com.capstone.collectionprocesshandling.service.DunningService;
+@SpringBootTest
+public class DunningServiceTest {
 
-// import java.time.LocalDate;
-// import java.util.ArrayList;
-// import java.util.Collections;
-// import java.util.List;
+    @InjectMocks
+    private DunningService dunningService;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.junit.jupiter.api.Assertions.assertFalse;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
-// import static org.mockito.ArgumentMatchers.argThat;
-// import static org.mockito.Mockito.*;
-// @SpringBootTest
-// class DunningServiceTest {
+    @Mock
+    private DunningRepo dunningRepo;
 
-//     @Autowired
-//     private DunningService dunningService;
+    @BeforeEach
+    public void setup() {
+        MockitoAnnotations.initMocks(this);
+    }
 
-//     @MockBean
-//     private DunningRepo dunningRepo;
-//     @Test
-//     public void testGetDunningPays() {
-//         // Sample data
-//         LocalDate currentDate = LocalDate.now();
-//         LocalDate thresholdDate = currentDate.minusDays(5);
+    @Test
+    public void testGetDunningPays() {
+        LocalDate currentDate = LocalDate.now();
+        LocalDate thresholdDate = currentDate.minusDays(5);
 
-//         DunningEntity dunning1 = new DunningEntity(1, currentDate, new CustomerEntity(1, "Alice", "alice@example.com", "93465922",currentDate,"Tv"));
-//         DunningEntity dunning2 = new DunningEntity(2, thresholdDate.minusDays(1), new CustomerEntity(2, "Bob", "bob@example.com", "25235142",currentDate,"tv"));
-//         List<DunningEntity> dunningEntities = new ArrayList<>();
-//         dunningEntities.add(dunning1);
-//         dunningEntities.add(dunning2);
-    
-//         // Mock the dunningRepo
-//         when(dunningRepo.dunningPayments(thresholdDate)).thenReturn(dunningEntities);
-//         when(dunningRepo.findByCustomer(dunning1.getCustomer())).thenReturn(Collections.singletonList(dunning1));
-//         when(dunningRepo.findByCustomer(dunning2.getCustomer())).thenReturn(Collections.emptyList());
-    
-//         // Call the method to be tested
-//         List<DunningEntity> result = dunningService.getdunningpays();
-    
-//         // Verify that the dunningPayments method was called with the expected thresholdDate
-//         verify(dunningRepo, times(1)).dunningPayments(thresholdDate);
-    
-//         // Verify that the save method was called only for Bob
-//         verify(dunningRepo, times(1)).save(argThat(dunningEntity -> dunningEntity.getCustomer().getName().equals("Bob")));
-    
-//         // You don't need to verify interactions on DunningService.
-    
-//         // Ensure that the returned list contains only one entry (for Bob)
-//         assertEquals(2, result.size());
-//         assertEquals("Alice", result.get(0).getCustomer().getName());
-//     }
-    
-//     @Test
-//     public void testIsCustomerInDunning_CustomerInDunning() {
-//                 LocalDate currentDate = LocalDate.now();
+        // Create a list of DunningEntity objects to simulate the result of dunningPayments
+        List<DunningEntity> dunningPayments = new ArrayList<>();
+        // Add some test DunningEntity objects to the list
 
-//         CustomerEntity customer = new CustomerEntity(1, "Alice", "alice@example.com", "93465922",currentDate,"tv");
-//         DunningEntity dunning = new DunningEntity(1, LocalDate.now(), customer);
+        when(dunningRepo.dunningPayments(thresholdDate)).thenReturn(dunningPayments);
 
-//         when(dunningRepo.findByCustomer(customer)).thenReturn(Collections.singletonList(dunning));
+        // Call the method
+        List<DunningEntity> result = dunningService.getdunningpays();
 
-//         boolean isInDunning = dunningService.isCustomerInDunning(customer);
+        // Perform assertions to verify the result and interactions
+        // For example:
+        // assertEquals(dunningPayments.size(), result.size());
+        // Verify that dunning entries are saved correctly for customers not in dunning
+        // Verify the interactions with dunningRepo and customerRepo
+    }
 
-//         assertTrue(isInDunning);
-//     }
+    @Test
+    public void testDunningPays() {
+        // Create a list of DunningEntity objects to simulate the result of dunningpays
+        List<DunningEntity> dunningPays = new ArrayList<>();
+        // Add some test DunningEntity objects to the list
 
-//     @Test
-//     public void testIsCustomerInDunning_CustomerNotInDunning() {
-//                 LocalDate currentDate = LocalDate.now();
+        when(dunningRepo.findAll()).thenReturn(dunningPays);
 
-//         CustomerEntity customer = new CustomerEntity(1, "Alice", "alice@example.com", "93465922",currentDate,"tv");
+        // Call the method
+        List<DunningEntity> result = dunningService.dunningpays();
 
-//         when(dunningRepo.findByCustomer(customer)).thenReturn(Collections.emptyList());
+        // Perform assertions to verify the result
+        // For example:
+        // assertEquals(dunningPays.size(), result.size());
+    }
 
-//         boolean isInDunning = dunningService.isCustomerInDunning(customer);
+    @Test
+    public void testIsCustomerInDunning() {
+        // Prepare a test CustomerEntity and a list of DunningEntity objects
+        CustomerEntity customer = new CustomerEntity();
+        List<DunningEntity> existingDunningEntries = new ArrayList<>();
+        // Add some test DunningEntity objects to the list
 
-//         assertFalse(isInDunning);
-//     }
+        when(dunningRepo.findByCustomer(customer)).thenReturn(existingDunningEntries);
 
-//     @Test
-//     public void testDunningPays() {
-//         // Sample data
-//                 LocalDate currentDate = LocalDate.now();
+        // Call the method
+        boolean result = dunningService.isCustomerInDunning(customer);
 
-//         DunningEntity dunning1 = new DunningEntity(1, LocalDate.now(), new CustomerEntity(1, "Alice", "alice@example.com", "93465922",currentDate,"tv"));
-//         DunningEntity dunning2 = new DunningEntity(2, LocalDate.now(), new CustomerEntity(2, "Bob", "bob@example.com", "25235142",currentDate,"tv"));
-//         List<DunningEntity> dunningEntities = new ArrayList<>();
-//         dunningEntities.add(dunning1);
-//         dunningEntities.add(dunning2);
-
-//         when(dunningRepo.findAll()).thenReturn(dunningEntities);
-
-//         List<DunningEntity> result = dunningService.dunningpays();
-
-//         verify(dunningRepo, times(1)).findAll();
-//         assertEquals(2, result.size());
-//         assertEquals("Alice", result.get(0).getCustomer().getName());
-//         assertEquals("Bob", result.get(1).getCustomer().getName());
-//     }
-// }
+        // Perform assertions to verify the result
+        // For example:
+        // assertTrue(result);
+    }
+}
