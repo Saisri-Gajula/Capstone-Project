@@ -2,8 +2,8 @@
 # Project Checklist
 
 ## 1. Backend
-- [ ] Code
-- [ ] Documentation
+- [x] Code
+- [x] Documentation
 
 ## 2. Frontend
 - [ ] Code
