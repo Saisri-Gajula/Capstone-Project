@@ -10,7 +10,7 @@
 - [ ] Documentation
 
 ## 3. Database Model Visualization
-- [x] [ER Diagram](collectionprocesshandling/ER Diagram.png)
+- [x] [ER Diagram](https://github.com/Saisri-Gajula/Capstone-Project/blob/main/collectionprocesshandling/ER%20Diagram.png)
 
 ## 4. Test Coverage
 - [ ] Reports
