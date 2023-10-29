@@ -2,8 +2,8 @@
 # Project Checklist
 
 ## 1. Backend
-- [ ] Code
-- [ ] Documentation
+- [x] Code
+- [x] Documentation(http://localhost:8080/swagger-ui/index.html#/)
 
 ## 2. Frontend
 - [ ] Code
