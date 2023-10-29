@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Reminders } from '../reminders';
 import { DunningProcessService } from '../dunning-process.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-terminationreminders',
@@ -9,9 +10,9 @@ import { DunningProcessService } from '../dunning-process.service';
 })
 export class TerminationremindersComponent {
   reminders:Reminders[]=[];
-  constructor(private dunningService: DunningProcessService){}
+  constructor(private dunningService: DunningProcessService,private router: Router){}
   
-
+  selectedPaymentOption: string = 'Basic';
    
   ngOnInit(){
     this.terminationreminders();
@@ -31,4 +32,8 @@ export class TerminationremindersComponent {
     }
     );
   }
+paymentPlan(customerId: number){
+  this.router.navigate(['/paymentactions',customerId]);
+
+}
 }

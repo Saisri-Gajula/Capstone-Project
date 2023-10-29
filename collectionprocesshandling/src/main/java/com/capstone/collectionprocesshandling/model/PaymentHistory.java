@@ -7,7 +7,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
@@ -24,5 +23,6 @@ int id;
     String phoneNumber;
     String status;//payment is done or not 
     Date date;
+    int totalamount;
 
 }

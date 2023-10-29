@@ -4,6 +4,8 @@
         <p>Customer-Id: {{reminder.customer.id}}</p>
         <p>Customer-Name: {{reminder.customer.name}}</p>
         <p>Due Date: {{reminder.dueDate}}</p>
-        <button (click)="paidCustomers(reminder.phoneNumber)">Pay</button>
+        <p>Dueamount: {{reminder.dueamount}}</p>
+        <button (click)="paidCustomers(reminder.phoneNumber)">Pay Full Amount</button>
+        <button (click)="paymentPlan(reminder.customer.id)">PaymentPlan(Pay in two installments)</button>
     </li>
 </ul>

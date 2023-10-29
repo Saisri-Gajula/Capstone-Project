@@ -21,7 +21,7 @@ public class DunningEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
     LocalDate dueDate;
-
+    int amount;
     @ManyToOne
     @JoinColumn(name = "customer_id")
     private CustomerEntity customer;

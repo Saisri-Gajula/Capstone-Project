@@ -1,0 +1,8 @@
+<p>completedpayments works!</p>
+<ul>
+    <li *ngFor="let payment of payments">
+        <p>Customer-Status: {{payment.status}}</p>
+        <p>Customer-Id: {{payment.customer.id}}</p>
+        <p>Customer-Name: {{payment.customer.name}}</p>
+    </li>
+</ul>

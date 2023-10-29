@@ -13,6 +13,9 @@ import { CuringComponent } from './curing/curing.component';
 import { FirstremindersComponent } from './firstreminders/firstreminders.component';
 import { SecondremindersComponent } from './secondreminders/secondreminders.component';
 import { TerminationremindersComponent } from './terminationreminders/terminationreminders.component';
+import { CompletedpaymentsComponent } from './completedpayments/completedpayments.component';
+import { PaymentactionsComponent } from './paymentactions/paymentactions.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { TerminationremindersComponent } from './terminationreminders/terminatio
     CuringComponent,
     FirstremindersComponent,
     SecondremindersComponent,
-    TerminationremindersComponent
+    TerminationremindersComponent,
+    CompletedpaymentsComponent,
+    PaymentactionsComponent,
+    LoginComponent
     ],
   imports: [
     BrowserModule,

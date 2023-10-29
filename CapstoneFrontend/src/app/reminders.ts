@@ -7,4 +7,5 @@ export interface Reminders {
     dueDate: Date;
     status: string;
     customer: Customer;
+    dueamount: number;
 }

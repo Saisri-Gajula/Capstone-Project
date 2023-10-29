@@ -5,7 +5,6 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.capstone.collectionprocesshandling.model.CustomerEntity;
 import com.capstone.collectionprocesshandling.model.PaymentHistory;
 import com.capstone.collectionprocesshandling.model.FirstReminderRequest;
 import com.capstone.collectionprocesshandling.repository.CustomerRepo;
@@ -25,15 +24,15 @@ public class PaymentHistoryService {
     private PaymentHistoryRepo paymentHistoryRepo;
 
     public void paidCustomer(String phoneNumber) {
-FirstReminderRequest reminder= new FirstReminderRequest();
+        FirstReminderRequest reminder = new FirstReminderRequest();
         PaymentHistory payment= new PaymentHistory();
         payment.setPhoneNumber(phoneNumber);
         payment.setCustomer(customerRepo.findByPhoneNumber(phoneNumber));
         payment.setStatus("paid");
         payment.setDate(new Date());
+        payment.setTotalamount(5000);
         paymentHistoryRepo.save(payment);
-       reminder= reminderRepo.findByPhoneNumber(phoneNumber);
-        // reminderRepo.save(reminder);
+        reminder= reminderRepo.findByPhoneNumber(phoneNumber);
         reminderRepo.delete(reminder);
     }
 }

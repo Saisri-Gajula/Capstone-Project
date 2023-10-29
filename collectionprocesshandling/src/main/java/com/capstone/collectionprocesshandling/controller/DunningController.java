@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.collectionprocesshandling.model.DunningEntity;
-// import com.capstone.collectionprocesshandling.Model.dunningEntity;
 import com.capstone.collectionprocesshandling.service.DunningService;
 @RestController
 @RequestMapping("/api")
@@ -19,13 +18,6 @@ public class DunningController {
 
     @GetMapping("/dunningPays")
     public List<DunningEntity> dunningdues(){
-        // dunningservice.getdunningpays();
-        // System.out.println("heyy" + dunningservice.dunningpays());
         return dunningservice.dunningpays();
     }
-
-    
-
-
-
 }

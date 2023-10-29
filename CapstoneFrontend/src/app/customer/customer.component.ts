@@ -15,6 +15,7 @@ export class CustomerComponent {
     name: '',
     mailId: '',
     phoneNumber: '',
+    amount:0,
    
   };  constructor( private dunningService: DunningProcessService, private router:Router){}
       

@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import com.twilio.rest.api.v2010.account.Message;
 import com.capstone.collectionprocesshandling.controller.Smsrequest;
-import com.capstone.collectionprocesshandling.model.CustomerEntity;
 import com.capstone.collectionprocesshandling.model.FirstReminderRequest;
 import com.capstone.collectionprocesshandling.model.SecondReminderRequest;
 import com.capstone.collectionprocesshandling.model.TerminationReminderRequest;
@@ -59,7 +58,6 @@ this.twilioproperties=twilioproperties;
         smsrequest.setMessage("Hi " +name+"! This is from purchasing app. You have due payments on purchased products. Please complete your payments. Otherwise We are going to terminate your account (or) Cancel your access to this products.");
     
         Twilio.init(twilioAccountSid, twilioAuthToken);
-        System.out.println(smsrequest.getNumber());
         
             Message message = Message.creator(
                 new PhoneNumber(smsrequest.getNumber()),  // Recipient's phone number
@@ -69,7 +67,8 @@ this.twilioproperties=twilioproperties;
             if(reminderLevel==1){
                 FirstReminderRequest firstreminder = new FirstReminderRequest();
                 firstreminder.setPhoneNumber(smsrequest.getNumber());
-                firstreminder.setReminder_level(reminderLevel);
+                firstreminder.setReminderLevel(reminderLevel);
+                firstreminder.setDueamount(2500);
                 firstreminder.setDueDate(dunningRepo.findByCustomerId(customerRepo.findByPhoneNumber(phoneNumber).getId()).getDueDate());
                 firstreminder.setCustomer(customerRepo.findByPhoneNumber(phoneNumber));
                 firstreminderRepo.save(firstreminder);
@@ -77,7 +76,8 @@ this.twilioproperties=twilioproperties;
             else if(reminderLevel==2){
                  SecondReminderRequest secondreminder = new SecondReminderRequest();
                 secondreminder.setPhoneNumber(smsrequest.getNumber());
-                secondreminder.setReminder_level(reminderLevel);
+                secondreminder.setReminderLevel(reminderLevel);
+                secondreminder.setDueamount(2500);
                 secondreminder.setDueDate(dunningRepo.findByCustomerId(customerRepo.findByPhoneNumber(phoneNumber).getId()).getDueDate());
                 secondreminder.setCustomer(customerRepo.findByPhoneNumber(phoneNumber));
                 secondreminderRepo.save(secondreminder);
@@ -85,13 +85,13 @@ this.twilioproperties=twilioproperties;
             else if(reminderLevel==3){
                  TerminationReminderRequest terminationreminder = new TerminationReminderRequest();
                 terminationreminder.setPhoneNumber(smsrequest.getNumber());
-                terminationreminder.setReminder_level(reminderLevel);
+                terminationreminder.setReminderLevel(reminderLevel);
+                terminationreminder.setDueamount(2500);
                 terminationreminder.setDueDate(dunningRepo.findByCustomerId(customerRepo.findByPhoneNumber(phoneNumber).getId()).getDueDate());
                 terminationreminder.setCustomer(customerRepo.findByPhoneNumber(phoneNumber));
                 terminationreminderRepo.save(terminationreminder);
             }
 
-            System.out.println("----------------------------------------"+smsrequest.getNumber());
            return message.getStatus().toString();
     }
 

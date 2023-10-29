@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.capstone.collectionprocesshandling.model.CustomerEntity;
 import com.capstone.collectionprocesshandling.model.DunningEntity;
-import com.capstone.collectionprocesshandling.model.PaymentReceipt;
 import com.capstone.collectionprocesshandling.repository.DunningRepo;
 
 @Service
@@ -24,9 +23,7 @@ public class DunningService {
         
         LocalDate currentDate = LocalDate.now();
         LocalDate thresholdDate = currentDate.minusDays(5);
-        // System.out.println(currentDate.minusDays(5));
         List<DunningEntity> dunningPayments = dunningrepo.dunningPayments(thresholdDate);
-        System.out.println("hello " + dunningPayments);
         for(DunningEntity dunningPayment : dunningPayments){
             if (!isCustomerInDunning(dunningPayment.getCustomer())) {
                 DunningEntity dunning = new DunningEntity();
@@ -35,7 +32,6 @@ public class DunningService {
                 dunningrepo.save(dunning);
             }
         }
-        // System.out.println(dunningrepo.findAll());
         return dunningPayments;
     }
 

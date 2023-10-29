@@ -7,6 +7,7 @@ import com.capstone.collectionprocesshandling.model.CustomerEntity;
 
 @Repository
 public interface CustomerRepo extends JpaRepository<CustomerEntity, Integer> {
-    
     CustomerEntity findByPhoneNumber(String phoneNumber);
+
+    CustomerEntity findById(int customerId);
 }

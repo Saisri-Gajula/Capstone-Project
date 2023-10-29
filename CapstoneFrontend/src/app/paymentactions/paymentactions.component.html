@@ -1,0 +1,15 @@
+<p>Payment ACtions Working</p>
+<ul>
+    <li *ngFor="let reminder of reminders">
+        <p>Customer-Id: {{reminder.customer.id}}</p>
+        <p>Customer-Name: {{reminder.customer.name}}</p>
+        <p>paidAmount: {{paidAmount}}</p>
+        <p>Dueamount: {{dueAmount}}</p>
+        <p>
+            Remaining amount in 2 installments:
+            Pay ur 1st installment amount and reinstate your acces to the app.
+        </p>
+        <p>Installment amount:{{installmentAmount}}</p>
+        <button (click)="installmentpay(reminder.customer.id)">Pay</button>
+    </li>
+</ul>

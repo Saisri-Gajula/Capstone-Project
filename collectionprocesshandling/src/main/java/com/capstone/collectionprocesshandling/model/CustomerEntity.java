@@ -13,8 +13,9 @@ import lombok.NoArgsConstructor;
 public class CustomerEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int Id;
+    int id;
     String name;
     String mailId;
+    int amount;
     String  phoneNumber;  
 }

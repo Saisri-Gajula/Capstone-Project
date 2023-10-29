@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.collectionprocesshandling.model.CuringEntity;
-import com.capstone.collectionprocesshandling.model.DunningEntity;
 import com.capstone.collectionprocesshandling.model.FirstReminderRequest;
 import com.capstone.collectionprocesshandling.service.CuringService;
 import com.capstone.collectionprocesshandling.service.ReminderService;
@@ -47,10 +46,6 @@ public class CuringController {
     
     @GetMapping("/curing")
     public List<FirstReminderRequest> dunningdues(){
-        // dunningservice.getdunningpays();
-        // System.out.println("heyy" + dunningservice.dunningpays());
-       System.out.println(reminderService.curingreminders()); 
-
         return reminderService.curingreminders();
     }
     

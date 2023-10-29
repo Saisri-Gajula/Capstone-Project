@@ -3,22 +3,21 @@ package com.capstone.collectionprocesshandling.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-// import org.springframework.web.bind.annotation.PostMapping;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.capstone.collectionprocesshandling.model.CustomerEntity;
-import com.capstone.collectionprocesshandling.model.DunningEntity;
 import com.capstone.collectionprocesshandling.model.FirstReminderRequest;
+import com.capstone.collectionprocesshandling.model.PaymentHistory;
 import com.capstone.collectionprocesshandling.model.SecondReminderRequest;
 import com.capstone.collectionprocesshandling.model.TerminationReminderRequest;
 import com.capstone.collectionprocesshandling.repository.CustomerRepo;
+import com.capstone.collectionprocesshandling.repository.PaymentHistoryRepo;
 import com.capstone.collectionprocesshandling.service.ReminderService;
 
 @RestController
@@ -30,10 +29,10 @@ public class ReminderController {
     private ReminderService reminderService;
 
     @Autowired
-    private Smsrequest smsrequest;
+    private CustomerRepo customerRepo;
 
     @Autowired
-    private CustomerRepo customerRepo;
+    private PaymentHistoryRepo paymentHistoryRepo;
 @GetMapping("/send-sms/{phoneNumber}")
 public ResponseEntity<String> sendReminderSms(@PathVariable String phoneNumber) {
     CustomerEntity customer = customerRepo.findByPhoneNumber(phoneNumber);
@@ -58,5 +57,8 @@ public ResponseEntity<String> sendReminderSms(@PathVariable String phoneNumber) 
     public List<TerminationReminderRequest> terminationreminders(){
         return reminderService.terminationReminders();
     }
-    
+    @GetMapping("/completedPayments")
+    public List<PaymentHistory> completedReminders(){
+        return paymentHistoryRepo.findAll();
+    }
 }

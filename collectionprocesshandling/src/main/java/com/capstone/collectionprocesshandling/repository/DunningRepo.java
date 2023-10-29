@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import com.capstone.collectionprocesshandling.model.CustomerEntity;
 import com.capstone.collectionprocesshandling.model.DunningEntity;
 import com.capstone.collectionprocesshandling.model.FirstReminderRequest;
-import com.capstone.collectionprocesshandling.model.PaymentReceipt;
 
 // import ch.qos.logback.core.net.SyslogOutputStream;
 @Repository
@@ -22,6 +21,7 @@ public interface DunningRepo extends JpaRepository<DunningEntity, Integer>{
 
         @Query("SELECT d FROM DunningEntity d WHERE d.customer = :customer")
         List<DunningEntity> findByCustomer(CustomerEntity customer);
+        
         
 
         DunningEntity findByCustomerId(int id); 

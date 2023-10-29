@@ -4,6 +4,8 @@ import { Customer } from './customer';
 import { DuePayments } from './due-payments';
 import { HttpClient } from '@angular/common/http';
 import { Reminders } from './reminders';
+import { CompletedPayments } from './completed-payments';
+import { Paymentplan } from './paymentplan';
 
 @Injectable({
   providedIn: 'root'
@@ -58,4 +60,15 @@ export class DunningProcessService {
   terminationreminers(): Observable<Reminders[]>{
     return this._http.get<Reminders[]>('http://localhost:8080/api/terminationReminders');
   }
+
+  completedPayments(): Observable<CompletedPayments[]>{
+    return this._http.get<CompletedPayments[]>('http://localhost:8080/api/completedPayments');
+  }
+  addCustomerToPaymentPlan(customerId: number, paidAmount: number, dueAmount: number): Observable<Paymentplan[]> {
+    console.log(paidAmount);
+    console.log(dueAmount);
+    const url = `http://localhost:8080/api/paymentplan/${customerId}/${paidAmount}/${dueAmount}`;
+    return this._http.post<Paymentplan[]>(url, null);
+  }
+  
 }

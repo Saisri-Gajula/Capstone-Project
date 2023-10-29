@@ -4,4 +4,5 @@ export interface DuePayments {
     id: number,
     dueDate : Date;
     customer : Customer;
+    amount: number;
 }

@@ -2,7 +2,7 @@
 
 /* Navbar container */
 .navbar {
-    background-color: #007BFF;
+    background-color: #56606a;
     display: flex;
     justify-content: space-between;
     padding: 10px 20px;
@@ -18,7 +18,7 @@
   
   /* Navbar links on hover */
   .navbar a:hover {
-    color: #00A6FF;
+    color: #1f333e;
   }
   
   /* Navbar icons */
